@@ -1,9 +1,13 @@
 import express from 'express';
+import {getTodos, addTodo, deleteToDo} from '../controllers/todoControllers.js';
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hello, World! Server is running!');
-})
+router.get('/', getTodos );
+
+router.post('/add', addTodo );
+
+router.get('/delete/:id', deleteToDo );
 
 
 export default router;
