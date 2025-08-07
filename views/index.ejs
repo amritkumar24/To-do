@@ -11,16 +11,34 @@
         
         <%- include('partials/header') %>
 
-        <ul>
-            <% todos.forEach(todo => { %>
-                <li>
-                    <%= todo.title %>
-                    <a href="/delete/<%= todo._id %>">Delete</a>
-                </li>
-            <% }) %>
-        </ul>
+        <% if(todos.length === 0) {%> 
+            <p class="empty-message">No todos yet. Add some above!</p>
+        <%} else {%>
+            <ul class="todo-list">
+                <% todos.forEach(todo => { %>
+                    <li class="todo-list-item <%= todo.isCompleted ? 'completed' : '' %>">
+
+                        <div class="todo-left">
+                            <form action="/toggle/<%= todo._id %>" method="POST">
+                                <input type="checkbox" name="isCompleted" onchange="this.form.submit()" <%= todo.isCompleted ? 'checked' : '' %> /> 
+                            </form>
+                            <span><%= todo.title %></span>
+                        </div>
+
+                        <div class="todo-right">
+                            <a href="/edit/<%= todo._id %>">Edit</a>
+                            <a class="delete-btn" href="/delete/<%= todo._id %>" onclick="return confirmDelete()">Delete</a>
+                        </div>
+                        
+                    </li>
+                <% }) %>
+            </ul>
+
+        <% } %>
 
         <%- include('partials/footer') %>
+
+        <script src="/js/main.js"></script>
 
     </body>
 </html>

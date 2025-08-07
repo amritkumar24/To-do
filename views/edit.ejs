@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Todo</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+
+        <h2 class="todo-heading"> Edit Todo </h2>
+
+        <form class="todo-input-form" action="/update/<%= todo._id %>" method="post">          
+            <input class="todo-input" type="text" name="title" value="<%= todo.title %>" required />
+            <button class="todo-button" type="submit">Update</button>
+        </form>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>

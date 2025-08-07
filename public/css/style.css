@@ -5,33 +5,33 @@ body {
     margin: auto;
 }
 
-h1 {
+.todo-heading {
     text-align:center;
 }
 
-form {
+.todo-input-form {
     display:flex;
     margin-bottom: 20px;
 }
 
-input[type="text"] {
+.todo-input {
     flex: 1;
     padding: 10px;
     font-size: 16px;
 }
 
-button {
+.todo-button {
     padding: 10px;
     font-size: 16px;
     margin-left: 10px;
 }
 
-ul {
+.todo-list {
     list-style-type: none;
     padding: 0;
 }
 
-li {
+.todo-list-item {
     background: #f4f4f4;
     margin-bottom: 10px;
     padding: 10px;
@@ -40,9 +40,33 @@ li {
     align-items: center;
 }
 
-a {
-    color:red;
+.todo-left {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-btn {
+    color: red;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.empty-message {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #888;
+}
+
+.todo-right {
+    display: flex;
+    gap: 10px;
 }
 
 .footer {
