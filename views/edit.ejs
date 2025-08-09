@@ -12,6 +12,7 @@
 
         <form class="todo-input-form" action="/update/<%= todo._id %>" method="post">          
             <input class="todo-input" type="text" name="title" value="<%= todo.title %>" required />
+            <input class="todo-input" type="date" name="dueDate" value="<%= todo.dueDate ? new Date (todo.dueDate).toISOString().split('T')[0] : '' %>" />
             <button class="todo-button" type="submit">Update</button>
         </form>
 

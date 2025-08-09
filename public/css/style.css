@@ -11,6 +11,7 @@ body {
 
 .todo-input-form {
     display:flex;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -23,7 +24,6 @@ body {
 .todo-button {
     padding: 10px;
     font-size: 16px;
-    margin-left: 10px;
 }
 
 .todo-list {
@@ -67,6 +67,12 @@ body {
 .todo-right {
     display: flex;
     gap: 10px;
+}
+
+.due-date {
+    color: grey;
+    font-size: 0.85rem;
+    margin-left: 5px;
 }
 
 .footer {

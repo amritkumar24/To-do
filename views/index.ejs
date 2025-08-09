@@ -23,6 +23,11 @@
                                 <input type="checkbox" name="isCompleted" onchange="this.form.submit()" <%= todo.isCompleted ? 'checked' : '' %> /> 
                             </form>
                             <span><%= todo.title %></span>
+                            <% if (todo.dueDate) { %>
+                                <small class="due-date">
+                                    (Due: <%= todo.dueDate.toLocaleDateString('en-IN', {year:'numeric', month:'short', day: 'numeric'}) %>)
+                                </small>
+                            <% } %>
                         </div>
 
                         <div class="todo-right">

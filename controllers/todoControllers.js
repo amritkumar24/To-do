@@ -11,12 +11,16 @@ export const getTodos = async (req, res) => {
 
 export const addTodo = async (req, res) => {
     try{
-        const { title } = req.body;
-        if(!title || title.trim() === ' '){
+        const { title, dueDate } = req.body;
+        if(!title || title.trim() === ''){
             return res.redirect('/');
         }
 
-        const newToDo = new Todo ({title});
+        const newToDo = new Todo ({
+            title,
+            dueDate: dueDate ? new Date(dueDate) : undefined
+        });
+
         await newToDo.save();
         res.redirect('/');
     }catch(err){
@@ -68,7 +72,7 @@ export const renderEditForm = async (req, res) => {
 export const updateTodo = async (req, res) => {
     try{
         const {id} = req.params;
-        const {title} = req.body;
+        const {title, dueDate} = req.body;
 
         const todo = await Todo.findById(id);
         if(!todo){
@@ -76,9 +80,14 @@ export const updateTodo = async (req, res) => {
         }
 
         todo.title = title;
-        await todo.save();
 
+        if(dueDate){
+            todo.dueDate = new Date(dueDate);
+        }
+
+        await todo.save();
         res.redirect('/');
+        
     } catch (error) {
         console.error(error);
         res.status(500).send('Server error');
