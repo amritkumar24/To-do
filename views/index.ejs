@@ -1,42 +1,53 @@
+<!-- Main TODO App Page -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Meta info for character encoding and responsiveness -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>TODO App</title>
 
+        <!-- Link to CSS styles -->
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         
+        <!-- Include header partial (contains form for adding todos & filters) -->
         <%- include('partials/header') %>
 
-        <% if(todos.length === 0) {%> 
+        <!-- If there are no todos, show an empty state message -->
+        <% if(todos.length === 0) { %> 
             <p class="empty-message">No todos yet. Add some above!</p>
-        <%} else {%>
+        <% } else { %>
 
+            <!-- Priority label mapping -->
             <%
-
             const priorityLabels = {
                 1: 'Low',
                 2: 'Medium',
                 3: 'High'
             }
-
             %>
 
+            <!-- List of todos -->
             <ul class="todo-list">
                 <% todos.forEach(todo => { %>
+                    <!-- Each todo item; "completed" class is added if task is done -->
                     <li class="todo-list-item <%= todo.isCompleted ? 'completed' : '' %>">
 
+                        <!-- Left side: checkbox, title, priority, due date -->
                         <div class="todo-left">
+                            <!-- Checkbox to toggle completion -->
                             <form action="/toggle/<%= todo._id %>" method="POST">
                                 <input type="checkbox" name="isCompleted" onchange="this.form.submit()" <%= todo.isCompleted ? 'checked' : '' %> /> 
                             </form>
+                            <!-- Todo title -->
                             <span><%= todo.title %></span>
 
+                            <!-- Priority label with color styling -->
                             <small class="<%= (priorityLabels[todo.priority] || '').toLowerCase() %>">[<%= priorityLabels[todo.priority] || '' %>]</small>
 
+                            <!-- Show due date if it exists -->
                             <% if (todo.dueDate) { %>
                                 <small class="due-date">
                                     (Due: <%= todo.dueDate.toLocaleDateString('en-IN', {year:'numeric', month:'short', day: 'numeric'}) %>)
@@ -44,6 +55,7 @@
                             <% } %>
                         </div>
 
+                        <!-- Right side: Edit and Delete buttons -->
                         <div class="todo-right">
                             <a href="/edit/<%= todo._id %>">Edit</a>
                             <a class="delete-btn" href="/delete/<%= todo._id %>" onclick="return confirmDelete()">Delete</a>
@@ -55,8 +67,10 @@
 
         <% } %>
 
+        <!-- Include footer partial -->
         <%- include('partials/footer') %>
 
+        <!-- Link to JavaScript functionality -->
         <script src="/js/main.js"></script>
 
     </body>

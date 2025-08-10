@@ -1,51 +1,66 @@
+/* ===========================
+   BASIC PAGE STYLING
+=========================== */
 body {
-    font-family: sans-serif;
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
+    font-family: sans-serif;      /* Simple, clean font */
+    padding: 20px;                /* Space inside the body */
+    max-width: 600px;             /* Limit content width for readability */
+    margin: auto;                 /* Center content horizontally */
 }
 
+/* Heading for the todo list */
 .todo-heading {
-    text-align:center;
+    text-align: center;           /* Center-align the main heading */
 }
 
+/* ===========================
+   FORM STYLING
+=========================== */
 .todo-input-form {
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;       /* Stack elements vertically */
+    gap: 10px;                     /* Space between form elements */
+    margin-bottom: 20px;           /* Space below form */
 }
 
+/* Container for the text input and button in one row */
 .todo-input-box {
     display: flex;
-    gap: 10px;
+    gap: 10px;                     /* Space between input and button */
 }
 
+/* Priority selection area */
 .priority-section {
     display: flex;
-    gap:10px;
-    align-items: center;
+    gap: 10px;                     /* Space between label and dropdown */
+    align-items: center;           /* Align items vertically */
 }
 
+/* ===========================
+   PRIORITY COLORS
+=========================== */
 .high {
-    background-color: red;
-    color: white;
+    background-color: red;         /* High priority → red background */
+    color: white;                  /* White text for contrast */
 }
 
 .medium {
-    background-color: darkorange;
+    background-color: darkorange;  /* Medium priority → orange background */
     color: white;
 }
 
 .low {
-    background-color: darkgreen;
+    background-color: darkgreen;   /* Low priority → green background */
     color: white;
 }
 
+/* ===========================
+   INPUTS AND BUTTONS
+=========================== */
 .todo-input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
+    flex: 1;                       /* Take up remaining space in row */
+    padding: 10px;                 /* Inner spacing */
+    font-size: 16px;                /* Readable font size */
 }
 
 .todo-button {
@@ -53,55 +68,65 @@ body {
     font-size: 16px;
 }
 
+/* ===========================
+   TODO LIST ITEMS
+=========================== */
 .todo-list {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none;         /* Remove bullet points */
+    padding: 0;                    /* Remove default padding */
 }
 
 .todo-list-item {
-    background: #f4f4f4;
-    margin-bottom: 10px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: #f4f4f4;           /* Light gray background */
+    margin-bottom: 10px;           /* Space between tasks */
+    padding: 10px;                 /* Inner spacing */
+    display: flex;                 /* Flex for layout */
+    justify-content: space-between;/* Spread left & right sections */
+    align-items: center;           /* Center vertically */
 }
 
+/* Left side of each todo item (checkbox + text) */
 .todo-left {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
 
+/* Completed tasks styling */
 .completed {
-    text-decoration: line-through;
-    color: gray;
+    text-decoration: line-through; /* Cross out completed tasks */
+    color: gray;                   /* Gray text for faded effect */
 }
 
+/* Delete button style */
 .delete-btn {
-    color: red;
-    text-decoration: none;
-    font-weight: bold;
+    color: red;                     /* Red delete link */
+    text-decoration: none;          /* Remove underline */
+    font-weight: bold;              /* Make it stand out */
 }
 
+/* Empty list message */
 .empty-message {
     text-align: center;
     margin-top: 20px;
     font-style: italic;
-    color: #888;
+    color: #888;                    /* Light gray text */
 }
 
+/* Right section of todo (buttons, actions, etc.) */
 .todo-right {
     display: flex;
     gap: 10px;
 }
 
+/* Due date text style */
 .due-date {
     color: grey;
-    font-size: 0.85rem;
+    font-size: 0.85rem;              /* Slightly smaller text */
     margin-left: 5px;
 }
 
+/* Footer text */
 .footer {
     text-align: center;
     margin-top: 40px;
@@ -109,24 +134,25 @@ body {
     color: #777;
 }
 
-
-/* Filter form container */
+/* ===========================
+   FILTER FORM STYLING
+=========================== */
 .filter-form {
-    display: flex;                
-    align-items: center;            
-    gap: 10px;                      
-    margin-bottom: 20px;            
-    flex-wrap: wrap;             
+    display: flex;                  /* Place filters in one row */
+    align-items: center;
+    gap: 10px;                       /* Space between filters */
+    margin-bottom: 20px;             /* Space below filter row */
+    flex-wrap: wrap;                 /* Wrap filters on smaller screens */
 }
 
-/* Labels */
+/* Filter form labels */
 .filter-form label {
     font-weight: bold;
     margin-right: 5px;
     color: #333;
 }
 
-/* Dropdowns */
+/* Dropdown style */
 .filter-form select {
     padding: 5px 8px;
     border: 1px solid #ccc;
@@ -136,7 +162,7 @@ body {
     cursor: pointer;
 }
 
-/* Add hover effect for dropdowns */
+/* Hover effect for dropdowns */
 .filter-form select:hover {
     border-color: #888;
 }

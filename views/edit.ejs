@@ -1,21 +1,30 @@
+<!-- Edit Todo Page -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Basic meta settings -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Edit Todo</title>
+        <!-- Link to external stylesheet -->
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
 
+        <!-- Page heading -->
         <h2 class="todo-heading"> Edit Todo </h2>
 
+        <!-- Form to update an existing todo -->
         <form class="todo-input-form" action="/update/<%= todo._id %>" method="post">          
+            <!-- Input for todo title with pre-filled value -->
             <input class="todo-input" type="text" name="title" value="<%= todo.title %>" required />
+            <!-- Input for due date with formatted value if available -->
             <input class="todo-input" type="date" name="dueDate" value="<%= todo.dueDate ? new Date (todo.dueDate).toISOString().split('T')[0] : '' %>" />
+            <!-- Submit button to update the todo -->
             <button class="todo-button" type="submit">Update</button>
         </form>
 
+        <!-- Include footer partial -->
         <%- include('partials/footer') %>
     </body>
 </html>
