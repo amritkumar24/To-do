@@ -11,8 +11,14 @@ const todoSchema = new mongoose.Schema({
     },
     dueDate: {
         type: Date
+    },
+    priority: {
+        type: Number,
+        enum: [1, 2, 3],
+        default: 2
     }
-});
+    
+}, {timestamps: true});
 
 const Todo = mongoose.model('Todo', todoSchema);
 export default Todo;

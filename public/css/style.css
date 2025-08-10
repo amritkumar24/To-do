@@ -11,8 +11,35 @@ body {
 
 .todo-input-form {
     display:flex;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+}
+
+.todo-input-box {
+    display: flex;
+    gap: 10px;
+}
+
+.priority-section {
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+
+.high {
+    background-color: red;
+    color: white;
+}
+
+.medium {
+    background-color: darkorange;
+    color: white;
+}
+
+.low {
+    background-color: darkgreen;
+    color: white;
 }
 
 .todo-input {
@@ -80,4 +107,36 @@ body {
     margin-top: 40px;
     font-size: 14px;
     color: #777;
+}
+
+
+/* Filter form container */
+.filter-form {
+    display: flex;                
+    align-items: center;            
+    gap: 10px;                      
+    margin-bottom: 20px;            
+    flex-wrap: wrap;             
+}
+
+/* Labels */
+.filter-form label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #333;
+}
+
+/* Dropdowns */
+.filter-form select {
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Add hover effect for dropdowns */
+.filter-form select:hover {
+    border-color: #888;
 }

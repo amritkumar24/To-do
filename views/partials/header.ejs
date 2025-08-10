@@ -1,8 +1,49 @@
 <h1 class="todo-heading">To Do</h1>
 
 <form class="todo-input-form" action="/add" method="post">
-    <input class="todo-input" type="text" name="title" placeholder="Enter new todo..." required/>
-    <input class="todo-input" type="date" name="dueDate"/>
+    <div class="todo-input-box">
+        <input class="todo-input" type="text" name="title" placeholder="Enter new todo..." required/>
+        <input class="todo-input" type="date" name="dueDate"/>
+    </div>
+    
+
+    <div class="priority-section">
+        <label for="priority">Priority:</label>
+        <select class="todo-input" name="priority">
+            <option value="1">Low</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">High</option>
+        </select>
+    </div>
+
     <button class="todo-button" type="submit">Add</button>
+</form>
+
+<form method="get" action="/" class="filter-form">
+    
+    <label for="status">Status:</label>
+    <select name="status" onchange="this.form.submit()">
+        <option value="all" <%= !status || status === 'all' ? 'selected' : '' %> >All</option>
+        <option value="pending" <%= status === 'pending' ? 'selected' : '' %> >Pending</option>
+        <option value="completed" <%= status === 'completed' ? 'selected' : '' %> >Completed</option>
+    </select>
+
+    <label>Priority:</label>
+    <select name="priority" onchange="this.form.submit()">
+        <option value="all" <%= !priority || priority === 'all' ? 'selected' : '' %>>All</option>
+        <option value="1" <%= Number(priority) === 1 ? 'selected' : '' %>>Low</option>
+        <option value="2" <%= Number(priority) === 2 ? 'selected' : '' %>>Medium</option>
+        <option value="3" <%= Number(priority) === 3 ? 'selected' : '' %>>High</option>
+    </select>
+
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="created_desc" <%= !sort || sort === 'created_desc' ? 'selected' : '' %> >Newest</option>
+        <option value="created_asc" <%= sort === 'created_asc' ? 'selected' : '' %> >Oldest</option>
+        <option value="due_asc" <%= sort === 'due_asc' ? 'selected' : '' %> >Due date ↑</option>
+        <option value="due_desc" <%= sort === 'due_desc' ? 'selected' : '' %> >Due date ↓</option>
+        <option value="priority_high_low" <%= sort === 'priority_high_low' ? 'selected' : '' %>>Priority H → L</option>
+        <option value="priority_low_high" <%= sort === 'priority_low_high' ? 'selected' : '' %>>Priority L → H</option>
+    </select>
 </form>
 

@@ -14,6 +14,17 @@
         <% if(todos.length === 0) {%> 
             <p class="empty-message">No todos yet. Add some above!</p>
         <%} else {%>
+
+            <%
+
+            const priorityLabels = {
+                1: 'Low',
+                2: 'Medium',
+                3: 'High'
+            }
+
+            %>
+
             <ul class="todo-list">
                 <% todos.forEach(todo => { %>
                     <li class="todo-list-item <%= todo.isCompleted ? 'completed' : '' %>">
@@ -23,6 +34,9 @@
                                 <input type="checkbox" name="isCompleted" onchange="this.form.submit()" <%= todo.isCompleted ? 'checked' : '' %> /> 
                             </form>
                             <span><%= todo.title %></span>
+
+                            <small class="<%= (priorityLabels[todo.priority] || '').toLowerCase() %>">[<%= priorityLabels[todo.priority] || '' %>]</small>
+
                             <% if (todo.dueDate) { %>
                                 <small class="due-date">
                                     (Due: <%= todo.dueDate.toLocaleDateString('en-IN', {year:'numeric', month:'short', day: 'numeric'}) %>)

@@ -2,8 +2,43 @@ import Todo from '../models/todoModel.js';
 
 export const getTodos = async (req, res) => {
     try {
-        const todos = await Todo.find();
-        res.render('index', {todos});
+        const {priority='all', status='all', sort='created_desc'} = req.query;
+        let filter = {};
+        if(priority !== 'all'){
+            filter.priority = Number(priority);
+        }
+
+        if(status === 'completed'){
+            filter.isCompleted = true;
+        } else if (status === 'pending'){
+            filter.isCompleted = false;
+        }
+
+        let sortOption =  {};
+        switch(sort) {
+            case 'created_asc':
+                sortOption.createdAt = 1;
+                break;
+            case 'created_desc':
+                sortOption.createdAt = -1; 
+                break;
+            case 'due_asc':
+                sortOption.dueDate = 1; 
+                break;
+            case 'due_desc':
+                sortOption.dueDate = -1; 
+                break;
+            case 'priority_high_low':
+                sortOption.priority = -1; 
+                break;
+            case 'priority_low_high':
+                sortOption.priority = 1; 
+                break;
+        }
+
+        const todos = await Todo.find(filter).sort(sortOption);
+        res.render('index', {todos, status, priority, sort});
+
     }catch (err) {
         res.status(500).send('Error fetching todos');
     }
@@ -11,14 +46,15 @@ export const getTodos = async (req, res) => {
 
 export const addTodo = async (req, res) => {
     try{
-        const { title, dueDate } = req.body;
+        const { title, dueDate, priority } = req.body;
         if(!title || title.trim() === ''){
             return res.redirect('/');
         }
 
         const newToDo = new Todo ({
             title,
-            dueDate: dueDate ? new Date(dueDate) : undefined
+            dueDate: dueDate ? new Date(dueDate) : undefined,
+            priority: Number(priority) || 2
         });
 
         await newToDo.save();
